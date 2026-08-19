@@ -1,0 +1,24 @@
+{
+  "name": "taller1-space-invaders",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "build:wasm": "bash scripts/build-wasm.sh",
+    "typecheck": "astro check"
+  },
+  "dependencies": {
+    "astro": "^7.2.3",
+    "web-vitals": "^5.3.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "typescript": "^5.6.3"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
+  }
+}

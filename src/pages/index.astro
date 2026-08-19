@@ -1,0 +1,33 @@
+---
+// Server-renders only static HTML + CSS; zero JS ships until the script below
+// hydrates the client app. This keeps the INP of the page skeleton ~0.
+import '../styles/global.css';
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Space Invaders clone: Astro + single-threaded Rust/WASM + event-loop, task & microtask instrumentation y métricas de INP."
+    />
+    <title>Space Invaders — WASM · Event Loop · INP</title>
+  </head>
+  <body>
+    <main id="game-root"></main>
+
+    <!-- Only client-side. Imports the composition root + the WASM glue at
+         runtime; nothing here runs during SSR. -->
+    <script>
+      import { startApp } from '../game/main';
+
+      // tiny console hook usable from DevTools: window.__SI.startApp(node)
+      (globalThis as Record<string, unknown>).__SI = { startApp };
+
+      const root = document.getElementById('game-root');
+      if (root) startApp(root as HTMLElement);
+    </script>
+  </body>
+</html>
